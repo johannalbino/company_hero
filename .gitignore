@@ -1,0 +1,8 @@
+venv
+.coverage
+.env
+.idea
+db.sqlite3
+htmlcov
+ignore
+*__pycache__*
