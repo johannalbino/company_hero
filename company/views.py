@@ -57,8 +57,16 @@ class CompanyView(ModelViewSet):
         serializer.save()
 
     def destroy(self, request, *args, **kwargs):
+        Log.objects.create(
+            key=LogTypeSet.EMPLOYEE_DELETE_PAYLOAD,
+            value=kwargs
+        )
         instance = self.get_object()
         self.perform_destroy(instance)
+        Log.objects.create(
+            key=LogTypeSet.EMPLOYEE_DELETE_RESPONSE,
+            value=str(status.HTTP_204_NO_CONTENT)
+        )
         return Response(status=status.HTTP_204_NO_CONTENT)
 
     def perform_destroy(self, instance):

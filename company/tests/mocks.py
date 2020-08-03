@@ -31,5 +31,3 @@ COMPANY_GET = {
         'name': 'Teste by Test'
     }]
 }
-
-
