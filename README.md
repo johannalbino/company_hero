@@ -113,6 +113,8 @@ JSON: {
     "username": "Username Usuário",
     "name": "Nome Completo",
     "phone": "Telefone",
+    "data_birth": "Data de Nascimento",
+    "cpf": "Documento de id"
     "email": "Email do usuario",
 		"company": [{
 			"id": 1
@@ -134,41 +136,51 @@ GET
 ```
 URL: http://localhost:8000/funcionarios/
 RETORNO: {
-  "count": 24,
-  "next": "http://localhost:8000/funcionarios/?limit=10&offset=10",
+  "count": 1,
+  "next": null,
   "previous": null,
   "results": [
     {
       "id": 3,
       "address": {
-        "id": 62,
-        "zip_code": "31970752",
-        "address": "Rua Nilza Brito",
-        "neighborhood": "Vitoria",
-        "state": "MG",
-        "number": "51",
-        "complement": "Casa"
+        "id": 1,
+        "zip_code": "CEP",
+        "address": "Logradouro",
+        "neighborhood": "Bairro",
+        "state": "Estado",
+        "number": "Número",
+        "complement": "Complemento"
       },
       "company": [
         {
-          "id": 4,
-          "name": "Johann LTDA",
-          "fantasy_name": "Johann",
+          "id": 1,
+          "name": "Nomeda empresa",
+          "fantasy_name": "Nome fantasia da empresa",
           "cnpj": "00000000000000"
         }
     ]
-      "username": "albino",
-      "name": "Johann Albino",
-      "phone": "31995494755",
-      "email": "johann@gmail.com"
+      "username": "Username",
+      "name": "Nome Completo",
+      "phone": "Telefone",
+      "email": "Email do usuário",
+      "data_birth": "Data de nascimento",
+      "cpf": "Documento de ID"
     }
 }
 ```
 
 DELETE
 ```
-URL: http://localhost:8000/funcionarios/
+URL: http://localhost:8000/funcionarios/{id}/
 RETORNO: {
     status_code: 204
 }
+```
+
+##### PAGINAÇÂO
+Foi configurado 10 resultados por página, para fazer a paginação é só realizar a requisição incluindo ?page=2 ou +
+
+Exemplo: 
+```
+URL: http://localhost:8000/funcionarios/?page=2
 ```
