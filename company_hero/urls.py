@@ -18,12 +18,30 @@ from django.urls import path, include
 from rest_framework import routers
 from employee.views import EmployeeView
 from company.views import CompanyView
+from rest_framework import permissions
+from drf_yasg.views import get_schema_view
+from drf_yasg import openapi
+
+docs_view = get_schema_view(
+   openapi.Info(
+      title="Company Hero API",
+      default_version='v1',
+      description="Documentação referente a API",
+      terms_of_service="https://www.google.com/policies/terms/",
+      contact=openapi.Contact(email="johann.albino.ti@gmail.com"),
+      license=openapi.License(name="BSD License"),
+   ),
+   public=True,
+   permission_classes=(permissions.AllowAny,),
+)
+
 
 router = routers.DefaultRouter()
 router.register('funcionarios', EmployeeView)
 router.register('empresas', CompanyView)
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', include(router.urls))
+   path('admin/', admin.site.urls),
+   path('', include(router.urls)),
+   path('api-docs/', docs_view.with_ui('redoc', cache_timeout=0), name='api-docs')
 ]
