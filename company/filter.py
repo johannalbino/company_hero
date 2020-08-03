@@ -4,7 +4,7 @@ from company.models import Company
 
 class CompanyFilter(filters.FilterSet):
     """
-    Classe para aplicar filtro em empresas quando solicitado
+    Classe para aplicar filtro na busca de empresas
     """
 
     name = filters.CharFilter(lookup_expr='icontains')
