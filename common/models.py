@@ -56,3 +56,19 @@ class Address(models.Model):
         verbose_name = "Endereço"
         verbose_name_plural = "Endereços"
         db_table = "company_hero_address"
+
+
+class Log(models.Model):
+    key = models.CharField(
+        'Identificador da requisição',
+        max_length=255
+    )
+
+    value = models.TextField(
+        'Dados da requisição/resposta'
+    )
+
+    class Meta:
+        verbose_name = "Log"
+        verbose_name_plural = "Logs"
+        db_table = "company_hero_log"

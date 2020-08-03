@@ -37,8 +37,8 @@ docs_view = get_schema_view(
 
 
 router = routers.DefaultRouter()
-router.register('funcionarios', EmployeeView)
-router.register('empresas', CompanyView)
+router.register('funcionarios', EmployeeView, basename='funcionarios')
+router.register('empresas', CompanyView, basename='empresas')
 
 urlpatterns = [
    path('admin/', admin.site.urls),

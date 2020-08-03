@@ -11,7 +11,7 @@ class CompanySerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Company
-        fields = '__all__'
+        fields = ['name', 'fantasy_name', 'cnpj', 'address', 'employees']
 
     def create(self, validated_data):
         """

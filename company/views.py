@@ -2,6 +2,8 @@ from rest_framework import status
 from rest_framework.viewsets import ModelViewSet
 from company.models import Company
 from rest_framework.response import Response
+from common.models import Log
+from common.contants import LogTypeSet
 from django_filters import rest_framework as filters
 from company.filter import CompanyFilter
 from company.serializer import CompanySerializer
@@ -37,10 +39,18 @@ class CompanyView(ModelViewSet):
         """"
         Função para criar novas empresas
         """
+        Log.objects.create(
+            key=LogTypeSet.COMPANY_CREATE_PAYLOAD.value,
+            value=request.data
+        )
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         self.perform_create(serializer)
         headers = self.get_success_headers(serializer.data)
+        Log.objects.create(
+            key=LogTypeSet.COMPANY_CREATE_RESPONSE.value,
+            value=serializer.data
+        )
         return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
 
     def perform_create(self, serializer):

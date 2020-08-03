@@ -3,6 +3,8 @@ from rest_framework.response import Response
 from django_filters import rest_framework as filters
 from employee.models import Employee
 from employee.filter import EmployeeFilter
+from common.models import Log
+from common.contants import LogTypeSet
 from employee.serializer import EmployeeSerializer
 
 
@@ -37,10 +39,18 @@ class EmployeeView(viewsets.ModelViewSet):
         """
         Função para criar novos funcionários
         """
+        Log.objects.create(
+            key=LogTypeSet.EMPLOYEE_CREATE_PAYLOAD.value,
+            value=request.data
+        )
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         self.perform_create(serializer)
         headers = self.get_success_headers(serializer.data)
+        Log.objects.create(
+            key=LogTypeSet.EMPLOYEE_CREATE_RESPONSE.value,
+            value=serializer.data
+        )
         return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
 
     def perform_create(self, serializer):
