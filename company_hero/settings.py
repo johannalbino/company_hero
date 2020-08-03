@@ -94,16 +94,16 @@ WSGI_APPLICATION = 'company_hero.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': env('NAME_DB'),
-        'USER': env('USER_DB'),
-        'PASSWORD': env('PASSWORD_DB'),
-        'HOST': env('HOST_DB'),
-        'PORT': env('PORT_DB'),
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': env('NAME_DB'),
+#         'USER': env('USER_DB'),
+#         'PASSWORD': env('PASSWORD_DB'),
+#         'HOST': env('HOST_DB'),
+#         'PORT': env('PORT_DB'),
+#     }
+# }
 
 REST_FRAMEWORK = {
     'DEFAULT_RENDERER_CLASSES': [
